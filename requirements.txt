@@ -1,0 +1,21 @@
+anthropic==0.52.0
+arxiv==2.2.0
+faiss-cpu==1.11.0
+httpx==0.27.2
+httpx-sse==0.4.0
+huggingface-hub==0.32.2
+langchain==0.3.25
+langchain-anthropic==0.3.13
+langchain-core==0.3.61
+langchain-huggingface==0.2.0
+langchain-text-splitters==0.3.8
+nltk @ file:///C:/b/abs_a638z6l1z0/croot/nltk_1688114186909/work
+PyMuPDF==1.26.0
+regex @ file:///C:/b/abs_d5e2e5uqmr/croot/regex_1696515472506/work
+sentence-transformers==4.1.0
+tiktoken==0.9.0
+tokenizers==0.21.1
+torch==2.7.0
+torchaudio==2.7.0
+torchvision==0.22.0
+transformers==4.52.3
