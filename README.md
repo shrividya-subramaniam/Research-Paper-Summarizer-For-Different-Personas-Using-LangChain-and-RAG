@@ -96,6 +96,7 @@ This project demonstrates summarization using "Attention is All You Need" as a s
 **Citation:**
 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Łukasz Kaiser, Illia Polosukhin. (2017). *Attention Is All You Need*. arXiv. Retrieved from [https://arxiv.org/abs/1706.03762](https://arxiv.org/abs/1706.03762)
 
+
 ```
 # Example for a local PDF file
 source = "Attention is All You Need.pdf"
@@ -174,7 +175,7 @@ During the development and testing of this project, two challenges were encounte
 **Problem:** 
 Unlike OpenAI, Anthropic does not offer proprietary embedding models. This meant a separate solution was required to generate embeddings. 
 
-**Solution:**:
+**Solution:**
 To address this, an open-source embedding model from HuggingFace, specifically all-MiniLM-L6-v2 model, was integrated into the project. This model is lightweight, efficient, and performs well for semantic similarity tasks.The generated embeddings are then stored and managed using FAISS (Facebook AI Similarity Search), an open-source library for similarity search and clustering of dense vectors.This combination allowed the project to create a knowledge base from the research papers, enabling the sentence window retrieval mechanism to work without depending on Anthropic for embeddings.
 
 
@@ -183,7 +184,7 @@ To address this, an open-source embedding model from HuggingFace, specifically a
 Initially, when making multiple consecutive calls to the Anthropic API, particularly for both summarization and evaluation for several personas, the API was returning a `429 Too Many Requests` error. This indicated that the request rate was exceeding the allowed rate limit (40k ITPM per minute for Anthropic Claude API), leading to incomplete summary and evaluation results. 
 
 **Solution:**
-To resolve this issue, a strategic time.sleep(30) delay was introduced after each LLM call (both for generating summaries and for evaluating them). This pause helps to:
+To resolve this issue, a strategic `time.sleep(30)` delay was introduced after each LLM call (both for generating summaries and for evaluating them). This pause helps to:
 
 1. Respect API Rate Limits: By introducing a delay, the frequency of requests to the LLM API is reduced, making it less likely to hit the predefined rate limits.
 2. Prevent Overloading: Giving the API server a brief break between requests allows it to process previous queries and reduces the chance of receiving an `Too Many Requests` error.
