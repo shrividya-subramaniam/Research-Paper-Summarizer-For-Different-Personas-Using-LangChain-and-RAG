@@ -62,7 +62,7 @@ jupyter notebook research_paper_summarizer.ipynb
 ```
 
 #### Supported Input Sources
-1. Local PDF file: Ensure the PDF is in the same directory or provide the full path)
+1. Local PDF file (Ensure the PDF is in the same directory or provide the full path)
 2. ArXiv paper by ID
 3. ArXiv URL
 
