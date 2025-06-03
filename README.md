@@ -176,10 +176,24 @@ Two major challenges were encountered during the development and testing of this
 Unlike OpenAI, Anthropic does not offer proprietary embedding models. This meant a separate solution was required to generate embeddings. 
 
 **Solution:**
-To address this, an open-source embedding model from HuggingFace, specifically all-MiniLM-L6-v2 model, was integrated into the project. This model is lightweight, efficient, and performs well for semantic similarity tasks. The generated embeddings are then stored and managed using FAISS (Facebook AI Similarity Search), an open-source library for similarity search and clustering of dense vectors.This combination allowed the project to create a knowledge base from the research papers, enabling the sentence window retrieval mechanism to work without depending on Anthropic for embeddings.
+To address this, an open-source embedding model from HuggingFace, specifically all-MiniLM-L6-v2 model, was integrated into the project. This model is lightweight, efficient, and performs well for semantic similarity tasks. This third-party solution enabled generation of numerical representations of text crucial for the vector store and retrieval process.
 
 
-### 2. API Rate Limits and Model Overloading (Anthropic API)
+### 2. Context Management
+
+**Problem:** 
+A key challenge was balancing the amount of retrieved context provided to the LLM. Enough information is required for comprehensive summaries without exceeding the LLM's finite "context window" or incurring token limit errors, especially for lengthy research papers.
+
+**Solution:**
+ The strategy involved reducing the individual window size while simultaneously increasing the number of retrieved windows (k-value). This gave the system the following benefits.
+
+1. Optimize Context: By retrieving more, smaller, targeted windows, the LLM received a diverse set of relevant information without being overwhelmed by excessively long individual contexts.
+2. Prevent Token Overload: This method ensured that the total tokens passed to the LLM remained within its limits, even for extensive documents, while still providing sufficient breadth of information.
+3. Improve Summary Quality: With focused and broad context, the LLM could generate more accurate and coherent summaries by drawing from a wider range of relevant snippets.
+
+This strategic approach to context management was fundamental in enabling the system to effectively summarize lengthy and complex research papers.
+
+### 2. API Rate Limits and Model Overloading 
 **Problem:**
 Initially, when making multiple consecutive calls to the Anthropic API, particularly for both summarization and evaluation for several personas, the API was returning a `429 Too Many Requests` error. This indicated that the request rate was exceeding the allowed rate limit (40k ITPM per minute for Anthropic Claude API), leading to incomplete summary and evaluation results. 
 
