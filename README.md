@@ -168,7 +168,7 @@ The summary accurately represents the source material with high fidelity. ...
 
 
 ## Challenges Faced and Solutions
-Two major challenges were encountered during the development and testing of this project.
+Three major challenges were encountered during the development and testing of this project.
 
 ### 1. Lack of Native Embedding Models from Anthropic
 
@@ -193,7 +193,7 @@ A key challenge was balancing the amount of retrieved context provided to the LL
 
 This strategic approach to context management was fundamental in enabling the system to effectively summarize lengthy and complex research papers.
 
-### 2. API Rate Limits and Model Overloading 
+### 3. API Rate Limits and Model Overloading 
 **Problem:**
 Initially, when making multiple consecutive calls to the Anthropic API, particularly for both summarization and evaluation for several personas, the API was returning a `429 Too Many Requests` error. This indicated that the request rate was exceeding the allowed rate limit (40k ITPM per minute for Anthropic Claude API), leading to incomplete summary and evaluation results. 
 
